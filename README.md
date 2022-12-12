@@ -1,16 +1,36 @@
-# wedding_page
-
-A new Flutter project.
+# Wedding Page
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+### Prerequisites
 
-A few resources to get you started if this is your first Flutter project:
+Requirements for the software and other tools to build, test and push
+- [flutter](https://flutter.dev/)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+You can install it easily with [asdf](https://asdf-vm.com/)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```bash
+asdf plugin add flutter
+asdf install
+flutter doctor
+```
+
+### Installing
+
+Get dependencies and generate some code
+
+```bash
+flutter pub get
+flutter gen-l10n
+flutter pub run build_runner build
+```
+
+Start the server and check the site in your browser
+
+```bash
+flutter run
+```
+
+## Deployment
+
+Push code to master to start a new Github Action deploy.
