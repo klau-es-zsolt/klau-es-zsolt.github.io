@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wedding_page/ui/theme/colors.dart';
 
 class ProgramCard extends StatelessWidget {
   const ProgramCard({Key? key}) : super(key: key);
@@ -6,7 +7,7 @@ class ProgramCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white70,
+      color: WeddingColors.backgroundWhite,
       child: ListView.builder(
         shrinkWrap: true,
         itemCount: 10,

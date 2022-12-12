@@ -6,7 +6,9 @@ import 'package:wedding_page/ui/home/home_state.dart';
 import 'package:wedding_page/ui/home/widgets/menu_card.dart';
 import 'package:wedding_page/ui/home/widgets/place_card.dart';
 import 'package:wedding_page/ui/home/widgets/program_card.dart';
-import 'package:wedding_page/ui/home/widgets/registration_form.dart';
+import 'package:wedding_page/ui/home/widgets/registration_form/registration_form.dart';
+import 'package:wedding_page/ui/home/widgets/registration_form/registration_form_bloc.dart';
+import 'package:wedding_page/ui/home/widgets/registration_form/registration_form_event.dart';
 import 'package:wedding_page/ui/home/widgets/welcome_card.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,8 +17,15 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (ctx) => GetIt.I.get<HomeBloc>()..add(HomeCreated()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (ctx) => GetIt.I.get<HomeBloc>()..add(HomeCreated()),
+        ),
+        BlocProvider(
+          create: (ctx) => GetIt.I.get<RegistrationFormBloc>()..add(RegistrationCreatedEvent()),
+        ),
+      ],
       child: const HomeContent(),
     );
   }
@@ -40,7 +49,15 @@ class HomeContent extends StatelessWidget {
             child: BlocConsumer<HomeBloc, HomeState>(
               listenWhen: (previous, current) => current.isListenable(),
               buildWhen: (previous, current) => !current.isListenable(),
-              listener: (ctx, state) {},
+              listener: (ctx, state) {
+                final registrationFormBloc = ctx.read<RegistrationFormBloc>();
+                if (state is HomeFormSuccessState) {
+                  registrationFormBloc.add(RegistrationSuccessEvent());
+                } else if (state is HomeFormErrorState) {
+                  registrationFormBloc
+                      .add(RegistrationErrorEvent(state.errorType));
+                }
+              },
               builder: (ctx, state) => Center(
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.8,
@@ -50,9 +67,12 @@ class HomeContent extends StatelessWidget {
                       PlaceCard(),
                       ProgramCard(),
                       MenuCard(),
-                      RegistrationForm(onSubmit: (data) {
-                        context.read<HomeBloc>().add(HomeFormSubmitted(data));
-                      },)
+                      RegistrationForm(
+                        onSubmit: (data) {
+                          context.read<HomeBloc>().add(HomeFormSubmitted(data));
+                          context.read<RegistrationFormBloc>().add(RegistrationLoadingEvent());
+                        },
+                      )
                     ],
                   ),
                 ),

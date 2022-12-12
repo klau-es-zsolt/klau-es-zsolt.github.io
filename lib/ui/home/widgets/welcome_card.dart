@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wedding_page/ui/theme/colors.dart';
 
 class WelcomeCard extends StatelessWidget {
   const WelcomeCard({Key? key}) : super(key: key);
@@ -7,7 +8,7 @@ class WelcomeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      color: Colors.white70,
+      color: WeddingColors.backgroundWhite,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
