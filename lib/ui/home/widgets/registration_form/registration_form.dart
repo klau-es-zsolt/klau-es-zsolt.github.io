@@ -4,8 +4,8 @@ import 'package:wedding_page/domain/model/registration_data.dart';
 import 'package:wedding_page/ui/home/widgets/registration_form/form_result.dart';
 import 'package:wedding_page/ui/home/widgets/registration_form/registration_form_bloc.dart';
 import 'package:wedding_page/ui/home/widgets/registration_form/registration_form_state.dart';
-import 'package:wedding_page/ui/theme/colors.dart';
 import 'package:wedding_page/ui/widgets/form_label.dart';
+import 'package:wedding_page/ui/widgets/section_title.dart';
 import 'package:wedding_page/util/extensions/string_extensions.dart';
 
 class RegistrationForm extends StatefulWidget {
@@ -42,20 +42,13 @@ class _RegistrationFormState extends State<RegistrationForm> {
       builder: (ctx, state) => state is RegistrationFormWidgetState
           ? Container(
               width: double.infinity,
-              color: WeddingColors.backgroundWhite,
               child: Form(
                 key: _formKey,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: Column(
                     children: [
-                      const Text(
-                        "Visszajelzés",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24.0,
-                        ),
-                      ),
+                      const SectionTitle("Visszajelzés"),
                       _nameField(context),
                       _guestsField(context),
                       _roomField(context),

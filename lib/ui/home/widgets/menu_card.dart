@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wedding_page/ui/theme/colors.dart';
+import 'package:wedding_page/ui/widgets/section_title.dart';
 
 class MenuCard extends StatelessWidget {
   const MenuCard({Key? key}) : super(key: key);
@@ -7,7 +7,12 @@ class MenuCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: WeddingColors.backgroundWhite,
+      width: double.infinity,
+      child: Column(
+        children: const [
+          SectionTitle("Menü"),
+        ],
+      ),
     );
   }
 }

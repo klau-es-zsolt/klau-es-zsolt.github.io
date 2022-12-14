@@ -7,12 +7,15 @@ class SectionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      title,
-      style: TextStyle(
-        fontWeight: FontWeight.bold,
-        fontSize: 24.0,
-        color: color,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16.0),
+      child: Text(
+        title,
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 24.0,
+          color: color,
+        ),
       ),
     );
   }

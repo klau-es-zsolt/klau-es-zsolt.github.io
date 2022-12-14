@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import 'package:wedding_page/ui/theme/colors.dart';
 import 'package:wedding_page/ui/widgets/common_text.dart';
 import 'package:wedding_page/ui/widgets/section_title.dart';
 import 'package:wedding_page/domain/model/program_point.dart';
@@ -19,7 +18,6 @@ class ProgramCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: WeddingColors.backgroundWhite,
       child: Column(
         children: [
           const SectionTitle("Programok"),

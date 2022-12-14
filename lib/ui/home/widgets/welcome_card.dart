@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wedding_page/ui/theme/colors.dart';
+import 'package:wedding_page/ui/widgets/section_title.dart';
 
 class WelcomeCard extends StatelessWidget {
   const WelcomeCard({Key? key}) : super(key: key);
@@ -8,11 +8,11 @@ class WelcomeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      color: WeddingColors.backgroundWhite,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
-          children: [
+          children: const [
+            SectionTitle("Meghívó"),
             // invitation text
             Text("Meghívó olvashatatlan szöveg"),
             SizedBox(height: 8.0,),

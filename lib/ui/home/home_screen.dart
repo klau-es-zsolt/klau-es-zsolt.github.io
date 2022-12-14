@@ -11,6 +11,8 @@ import 'package:wedding_page/ui/home/widgets/registration_form/registration_form
 import 'package:wedding_page/ui/home/widgets/registration_form/registration_form_event.dart';
 import 'package:wedding_page/ui/home/widgets/welcome_card.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wedding_page/ui/theme/colors.dart';
+import 'package:wedding_page/ui/widgets/wedding_divider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -60,13 +62,18 @@ class HomeContent extends StatelessWidget {
               },
               builder: (ctx, state) => Center(
                 child: Container(
+                  color: WeddingColors.backgroundWhite,
                   width: MediaQuery.of(context).size.width * 0.8,
                   child: Column(
                     children: [
                       WelcomeCard(),
+                      WeddingDivider.padding(),
                       PlaceCard(),
+                      WeddingDivider.padding(),
                       ProgramCard(),
+                      WeddingDivider.padding(),
                       MenuCard(),
+                      WeddingDivider.padding(),
                       RegistrationForm(
                         onSubmit: (data) {
                           context.read<HomeBloc>().add(HomeFormSubmitted(data));
