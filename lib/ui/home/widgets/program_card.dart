@@ -10,7 +10,7 @@ class ProgramCard extends StatelessWidget {
     ProgramPoint(name: "Vendégvárás", time: DateTime.parse('2023-04-01 14:30:00Z')),
     ProgramPoint(name: "Szertartás", time: DateTime.parse('2023-04-01 16:00:00Z')),
     ProgramPoint(name: "Ünnepi vacsora", time: DateTime.parse('2023-04-01 17:30:00Z')),
-    const ProgramPoint(name: "Meglepetés"),
+    const ProgramPoint(name: "További meglepetések"),
   ];
 
   ProgramCard({Key? key}) : super(key: key);
