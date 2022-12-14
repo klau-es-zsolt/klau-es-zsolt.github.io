@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:wedding_page/ui/widgets/common_text.dart';
+
 class FormLabel extends StatelessWidget {
   final String label;
 
@@ -7,13 +9,6 @@ class FormLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      label,
-      style: const TextStyle(
-        fontWeight: FontWeight.w300,
-        fontSize: 18.0,
-        color: Colors.black87,
-      ),
-    );
+    return CommonText(label);
   }
 }
