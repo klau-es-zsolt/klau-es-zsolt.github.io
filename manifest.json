@@ -1,11 +1,11 @@
 {
-    "name": "wedding_page",
-    "short_name": "wedding_page",
+    "name": "Citrom <3 Koza",
+    "short_name": "C&K",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
