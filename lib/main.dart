@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: AppLocalizations.supportedLocales,
       locale: const Locale.fromSubtags(languageCode: "hu"),
       home: const HomeScreen(),
+      title: "Citrom <3 Koza"
     );
   }
 }
