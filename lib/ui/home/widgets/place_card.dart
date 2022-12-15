@@ -10,23 +10,27 @@ class PlaceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: 440,
-      child: Column(
-        children: [
-          const SizedBox(height: 8.0,),
-          const SectionTitle("Helyszín"),
-          Flexible(child: _getMap()),
-        ],
-      ),
+    return Column(
+      children: [
+        const SectionTitle("Helyszín"),
+        SizedBox(
+          width: double.infinity,
+          height: 400,
+          child: Column(
+            children: [
+              Flexible(child: _getMap()),
+            ],
+          ),
+        ),
+      ],
     );
   }
 
   Widget _getMap() {
-    String htmlId = "7";
+    String htmlId = "map";
 
     final mapOptions = MapOptions()
+      ..scrollwheel = false
       ..zoom = 16
       ..center = LatLng(48.103329156859076, 20.388624801851055);
 
@@ -38,7 +42,31 @@ class PlaceCard extends StatelessWidget {
         ..style.height = "400px"
         ..style.border = 'none';
 
-      GMap(elem, mapOptions);
+      final map = GMap(elem, mapOptions);
+
+      final iw = InfoWindow(
+        InfoWindowOptions()
+          ..position = LatLng(48.103329156859076, 20.388624801851055)
+          ..content = 'Szalajka Fogadó'
+
+      );
+      iw.open(map);
+
+      var marker = Marker(
+          MarkerOptions()
+            ..position = LatLng(48.103329156859076, 20.388624801851055)
+            ..title = "Szalajka Fogadó"
+            ..map = map
+      );
+
+      marker.onClick.listen((event) {
+        marker.visible = false;
+        iw.open(map);
+      });
+
+      iw.onCloseclick.listen((event) {
+        marker.visible = true;
+      });
 
       return elem;
     });
