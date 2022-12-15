@@ -72,8 +72,8 @@ class HomeContent extends StatelessWidget {
                       WeddingDivider.padding(),
                       ProgramCard(),
                       WeddingDivider.padding(),
-                      MenuCard(),
-                      WeddingDivider.padding(),
+                      // MenuCard(),
+                      // WeddingDivider.padding(),
                       RegistrationForm(
                         onSubmit: (data) {
                           context.read<HomeBloc>().add(HomeFormSubmitted(data));
