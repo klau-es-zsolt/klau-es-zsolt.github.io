@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import 'package:wedding_page/domain/model/program_point.dart';
 import 'package:wedding_page/ui/widgets/common_text.dart';
 import 'package:wedding_page/ui/widgets/section_title.dart';
-import 'package:wedding_page/domain/model/program_point.dart';
+import 'package:wedding_page/ui/widgets/wedding_divider.dart';
 
 class ProgramCard extends StatelessWidget {
   final _programPoints = [
@@ -28,6 +29,7 @@ class ProgramCard extends StatelessWidget {
               return ProgramListItem(_programPoints[index]);
             },
           ),
+          WeddingDivider(),
         ]
       )
     );

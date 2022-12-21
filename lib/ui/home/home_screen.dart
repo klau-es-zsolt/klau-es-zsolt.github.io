@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:wedding_page/ui/home/home_bloc.dart';
 import 'package:wedding_page/ui/home/home_event.dart';
 import 'package:wedding_page/ui/home/home_state.dart';
-import 'package:wedding_page/ui/home/widgets/menu_card.dart';
 import 'package:wedding_page/ui/home/widgets/place_card.dart';
 import 'package:wedding_page/ui/home/widgets/program_card.dart';
 import 'package:wedding_page/ui/home/widgets/registration_form/registration_form.dart';
 import 'package:wedding_page/ui/home/widgets/registration_form/registration_form_bloc.dart';
 import 'package:wedding_page/ui/home/widgets/registration_form/registration_form_event.dart';
 import 'package:wedding_page/ui/home/widgets/welcome_card.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wedding_page/ui/theme/colors.dart';
-import 'package:wedding_page/ui/widgets/wedding_divider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -66,14 +65,10 @@ class HomeContent extends StatelessWidget {
                   width: MediaQuery.of(context).size.width * 0.8,
                   child: Column(
                     children: [
-                      WelcomeCard(),
-                      WeddingDivider.padding(),
-                      PlaceCard(),
-                      WeddingDivider.padding(),
+                      const WelcomeCard(),
+                      const PlaceCard(),
                       ProgramCard(),
-                      WeddingDivider.padding(),
                       // MenuCard(),
-                      // WeddingDivider.padding(),
                       RegistrationForm(
                         onSubmit: (data) {
                           context.read<HomeBloc>().add(HomeFormSubmitted(data));

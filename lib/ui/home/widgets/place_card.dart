@@ -2,8 +2,10 @@ import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps/google_maps.dart';
-import 'package:wedding_page/ui/widgets/section_title.dart';
 import 'dart:ui' as ui;
+
+import 'package:wedding_page/ui/widgets/wedding_divider.dart';
+import 'package:wedding_page/ui/widgets/section_title.dart';
 
 class PlaceCard extends StatelessWidget {
   const PlaceCard({Key? key}) : super(key: key);
@@ -22,6 +24,7 @@ class PlaceCard extends StatelessWidget {
             ],
           ),
         ),
+        const WeddingDivider(),
       ],
     );
   }
