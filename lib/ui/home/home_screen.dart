@@ -11,6 +11,7 @@ import 'package:wedding_page/ui/home/widgets/registration_form/registration_form
 import 'package:wedding_page/ui/home/widgets/registration_form/registration_form_bloc.dart';
 import 'package:wedding_page/ui/home/widgets/registration_form/registration_form_event.dart';
 import 'package:wedding_page/ui/home/widgets/welcome_card.dart';
+import 'package:wedding_page/ui/theme/breakpoints.dart';
 import 'package:wedding_page/ui/theme/colors.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -37,6 +38,9 @@ class HomeContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    var width = size.width;
+
     return Scaffold(
       body: SizedBox.expand(
         child: Container(
@@ -62,7 +66,7 @@ class HomeContent extends StatelessWidget {
               builder: (ctx, state) => Center(
                 child: Container(
                   color: WeddingColors.backgroundWhite,
-                  width: MediaQuery.of(context).size.width * 0.8,
+                  width: width > WeddingBreakpoints.mobileView ? width * 0.8 : width,
                   child: Column(
                     children: [
                       const WelcomeCard(),

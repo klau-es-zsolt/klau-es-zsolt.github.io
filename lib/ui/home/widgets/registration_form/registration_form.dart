@@ -116,7 +116,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
     return Container(
       padding: const EdgeInsets.all(8.0),
-      width: width * 0.5,
+      width: width > WeddingBreakpoints.mobileView ? width * 0.5 : width * 0.75,
       child: width > WeddingBreakpoints.mobileView
           ? Row(
               children: [
@@ -174,7 +174,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
     return Container(
       padding: const EdgeInsets.all(8.0),
-      width: width * 0.5,
+      width: width > WeddingBreakpoints.mobileView ? width * 0.5 : width * 0.75,
       child: width > WeddingBreakpoints.mobileView
           ? Column(
               children: [
@@ -214,7 +214,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
     return Container(
       padding: const EdgeInsets.all(8.0),
-      width: width * 0.5,
+      width: width > WeddingBreakpoints.mobileView ? width * 0.5 : width * 0.75,
       child: Row(
         children: [
           Flexible(
@@ -251,7 +251,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
     return Container(
       padding: const EdgeInsets.all(8.0),
-      width: width * 0.5,
+      width: width > WeddingBreakpoints.mobileView ? width * 0.5 : width * 0.75,
       child: Row(
         children: [
           Flexible(
@@ -283,7 +283,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
     return Container(
       padding: const EdgeInsets.all(8.0),
-      width: width * 0.5,
+      width: width > WeddingBreakpoints.mobileView ? width * 0.5 : width * 0.75,
       child: Column(
         children: [
           const FormLabel(
@@ -331,7 +331,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
     return Container(
       padding: const EdgeInsets.all(8.0),
-      width: width * 0.5,
+      width: width > WeddingBreakpoints.mobileView ? width * 0.5 : width * 0.75,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -385,7 +385,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
     return Container(
       padding: const EdgeInsets.all(8.0),
-      width: width * 0.5,
+      width: width > WeddingBreakpoints.mobileView ? width * 0.5 : width * 0.75,
       child: Column(
         children: [
           const SizedBox(height: 16.0),
@@ -418,7 +418,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
     return Container(
       padding: const EdgeInsets.all(8.0),
-      width: width * 0.5,
+      width: width > WeddingBreakpoints.mobileView ? width * 0.5 : width * 0.75,
       child: width > WeddingBreakpoints.mobileView
           ? Row(
               children: [
