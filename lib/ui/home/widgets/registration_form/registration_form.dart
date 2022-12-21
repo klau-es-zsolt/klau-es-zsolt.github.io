@@ -4,6 +4,7 @@ import 'package:wedding_page/domain/model/registration_data.dart';
 import 'package:wedding_page/ui/home/widgets/registration_form/form_result.dart';
 import 'package:wedding_page/ui/home/widgets/registration_form/registration_form_bloc.dart';
 import 'package:wedding_page/ui/home/widgets/registration_form/registration_form_state.dart';
+import 'package:wedding_page/ui/theme/breakpoints.dart';
 import 'package:wedding_page/ui/widgets/form_label.dart';
 import 'package:wedding_page/ui/widgets/section_title.dart';
 import 'package:wedding_page/util/extensions/string_extensions.dart';
@@ -97,245 +98,346 @@ class _RegistrationFormState extends State<RegistrationForm> {
   }
 
   Widget _nameField(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    var width = size.width;
+
+    const nameLabel = FormLabel("Kérlek, add meg a neved");
+    var nameField = TextFormField(
+      keyboardType: TextInputType.name,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return "E nélkül nem fogjuk tudni, ki vagy ;)";
+        }
+        return null;
+      },
+      controller: _nameController,
+    );
+
     return Container(
       padding: const EdgeInsets.all(8.0),
-      width: MediaQuery.of(context).size.width * 0.5,
-      child: Row(
-        children: [
-          const Flexible(child: FormLabel("Név:")),
-          const SizedBox(
-            width: 8.0,
-          ),
-          Expanded(
-            child: TextFormField(
-              keyboardType: TextInputType.name,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return "A mező kitöltése kötelező";
-                }
-                return null;
-              },
-              controller: _nameController,
+      width: width * 0.5,
+      child: width > WeddingBreakpoints.mobileView
+          ? Row(
+              children: [
+                nameLabel,
+                const SizedBox(width: 8.0),
+                Expanded(child: nameField),
+              ],
+            )
+          : Column(
+              children: [
+                nameLabel,
+                nameField,
+              ],
             ),
-          ),
-        ],
-      ),
     );
   }
 
   Widget _guestsField(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    var width = size.width;
+
+    const adultLabel =
+        FormLabel("Veled együtt hány felnőtt vendégre számítsunk?");
+
+    var adultField = TextFormField(
+      keyboardType: TextInputType.number,
+      controller: _adultsController,
+      validator: (value) {
+        if (value.isNullOrEmpty) {
+          return "Csak akkor tudunk ételt és italt biztosítani, ha elmondod ;)";
+        } else if ((int.tryParse(value!) ?? 0) < 0) {
+          return "Remélem nem elvinni akarsz vendégeket, gondoljuk át újra ezt a számot.";
+        } else if ((int.tryParse(value!) ?? 0) > 5) {
+          return "Kicsit soknak tűnik, biztosan csak egy meghívót adtunk nektek?";
+        }
+
+        return null;
+      },
+    );
+
+    const childLabel = FormLabel("Hány gyereket hozol magaddal?");
+
+    var childField = TextFormField(
+      keyboardType: TextInputType.number,
+      controller: _childrenController,
+      validator: (value) {
+        if (value.isNullOrEmpty) {
+          return "Ha nincs egy se, írj be 0-t.";
+        } else if ((int.tryParse(value!) ?? 0) < 0) {
+          return "Hűha, ez nagyon kevésnek tűnik.";
+        }
+        return null;
+      },
+    );
+
     return Container(
       padding: const EdgeInsets.all(8.0),
-      width: MediaQuery.of(context).size.width * 0.5,
-      child: Row(
-        children: [
-          const Flexible(child: FormLabel("Felnőttek:")),
-          const SizedBox(
-            width: 8.0,
-          ),
-          Flexible(
-            flex: 2,
-            child: TextFormField(
-              keyboardType: TextInputType.number,
-              controller: _adultsController,
-              validator: (value) {
-                if (value.isNullOrEmpty) {
-                  return "A mező kitöltése kötelező";
-                } else if ((int.tryParse(value!) ?? 0) < 0) {
-                  return "A mező értékének pozitív számnak kell lennie!";
-                }
-                return null;
-              },
+      width: width * 0.5,
+      child: width > WeddingBreakpoints.mobileView
+          ? Column(
+              children: [
+                Row(
+                  children: [
+                    const Expanded(flex: 2, child: adultLabel),
+                    const SizedBox(width: 8.0),
+                    Flexible(child: adultField),
+                  ],
+                ),
+                const SizedBox(height: 16.0),
+                Row(
+                  children: [
+                    const Expanded(flex: 2, child: childLabel),
+                    const SizedBox(width: 8.0),
+                    Flexible(child: childField),
+                  ],
+                ),
+              ],
+            )
+          : Column(
+              children: [
+                const SizedBox(height: 16.0),
+                adultLabel,
+                adultField,
+                const SizedBox(height: 16.0),
+                childLabel,
+                childField,
+              ],
             ),
-          ),
-          const Flexible(child: FormLabel("Gyerekek:")),
-          const SizedBox(
-            width: 8.0,
-          ),
-          Flexible(
-            flex: 2,
-            child: TextFormField(
-              keyboardType: TextInputType.number,
-              controller: _childrenController,
-              validator: (value) {
-                if (value.isNullOrEmpty) {
-                  return "A mező kitöltése kötelező";
-                } else if ((int.tryParse(value!) ?? 0) < 0) {
-                  return "A mező értékének pozitív számnak kell lennie!";
-                }
-                return null;
-              },
-            ),
-          ),
-        ],
-      ),
     );
   }
 
   Widget _roomField(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    var width = size.width;
+
     return Container(
       padding: const EdgeInsets.all(8.0),
-      width: MediaQuery.of(context).size.width * 0.5,
+      width: width * 0.5,
       child: Row(
         children: [
-          const Flexible(child: FormLabel("Szeretnétek-e szállást?:")),
-          const SizedBox(
-            width: 8.0,
-          ),
           Flexible(
-              child: Checkbox(
+            child: Row(
+              children: const [
+                Flexible(
+                  child: FormLabel("Szeretnétek-e szállást?"),
+                ),
+                SizedBox(width: 8.0),
+                Tooltip(
+                  message: "A szállást mi biztosítjuk mindenkinek",
+                  child: Icon(Icons.info_outline),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(width: 8.0),
+          Checkbox(
             value: _roomValue,
             onChanged: (value) {
               setState(() {
                 _roomValue = value ?? false;
               });
             },
-          )),
-          const Flexible(child: Text("(A szállás mindenkinek jár alapból.)")),
+          ),
         ],
       ),
     );
   }
 
   Widget _cookiesField(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    var width = size.width;
+
     return Container(
       padding: const EdgeInsets.all(8.0),
-      width: MediaQuery.of(context).size.width * 0.5,
+      width: width * 0.5,
       child: Row(
         children: [
-          const Flexible(child: FormLabel("Hoztok-e sütit?:")),
-          const SizedBox(
-            width: 8.0,
-          ),
           Flexible(
-              child: Checkbox(
-                value: _cookieValue,
-                onChanged: (value) {
-                  setState(() {
-                    _cookieValue = value ?? false;
-                  });
-                },
-              )),
+            child: Row(
+              children: const [
+                Flexible(
+                  child: FormLabel("Fogtok-e sütit készíteni?"),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(width: 8.0),
+          Checkbox(
+            value: _cookieValue,
+            onChanged: (value) {
+              setState(() {
+                _cookieValue = value ?? false;
+              });
+            },
+          ),
         ],
       ),
     );
   }
 
   Widget _foodAllergiesField(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    var width = size.width;
+
     return Container(
       padding: const EdgeInsets.all(8.0),
-      width: MediaQuery.of(context).size.width * 0.5,
-      child: Row(
+      width: width * 0.5,
+      child: Column(
         children: [
-          const Flexible(
-            child: FormLabel("Milyen ételérzékenységed / allergiád van?"),
-          ),
+          const FormLabel(
+              "Van-e olyan étel vagy ital érzékenységed, amiről érdemes tudnunk?"),
           const SizedBox(
-            width: 8.0,
+            height: 8.0,
           ),
-          Expanded(
-              child: TextFormField(
+          TextFormField(
             controller: _foodAllergiesController,
-          )),
+          ),
         ],
       ),
     );
   }
 
   Widget _contactField(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    var width = size.width;
+
+    const emailLabel = FormLabel("Email");
+
+    var emailField = TextFormField(
+      controller: _emailController,
+      keyboardType: TextInputType.emailAddress,
+      validator: (value) {
+        if ((value == null || value.isEmpty) && _phoneController.text.isEmpty) {
+          return "Így nehezen tudunk szólni, ha változik valami. Megadsz esetleg egy email címet?";
+        }
+        return null;
+      },
+    );
+
+    const phoneLabel = FormLabel("Telefon");
+
+    var phoneField = TextFormField(
+      controller: _phoneController,
+      keyboardType: TextInputType.phone,
+      validator: (value) {
+        if ((value == null || value.isEmpty) && _emailController.text.isEmpty) {
+          return "Így nehezen tudunk szólni, ha változik valami. Nincs véletlenül egy telefonszámod?";
+        }
+        return null;
+      },
+    );
+
     return Container(
       padding: const EdgeInsets.all(8.0),
-      width: MediaQuery.of(context).size.width * 0.5,
+      width: width * 0.5,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const FormLabel("Elérhetőség:"),
-          Row(
-            children: [
-              const SizedBox(
-                width: 16.0,
-              ),
-              const Flexible(
-                child: FormLabel("Email:"),
-              ),
-              const SizedBox(
-                width: 8.0,
-              ),
-              Flexible(
-                flex: 2,
-                child: TextFormField(
-                  controller: _emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  validator: (value) {
-                    if ((value == null || value.isEmpty) && _phoneController.text.isEmpty) {
-                      return "Valamelyik elérhetőség kitöltése kötelező!";
-                    }
-                    return null;
-                  },
+          const FormLabel(
+              "Szükség esetén milyen módon tudunk veled kapcsolatba lépni?"),
+          width > WeddingBreakpoints.mobileView
+              ? Column(
+                  children: [
+                    Row(
+                      children: [
+                        const Expanded(child: emailLabel),
+                        const SizedBox(width: 8.0),
+                        Flexible(flex: 2, child: emailField)
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Expanded(child: phoneLabel),
+                        const SizedBox(width: 8.0),
+                        Flexible(flex: 2, child: phoneField),
+                      ],
+                    ),
+                  ],
+                )
+              : Column(
+                  children: [
+                    const SizedBox(height: 16.0),
+                    emailLabel,
+                    emailField,
+                    const SizedBox(height: 16.0),
+                    phoneLabel,
+                    phoneField,
+                  ],
                 ),
-              ),
-              const SizedBox(
-                width: 8.0,
-              ),
-              const Flexible(child: FormLabel("Vagy telefon:")),
-              const SizedBox(
-                width: 8.0,
-              ),
-              Flexible(
-                flex: 2,
-                child: TextFormField(
-                  controller: _phoneController,
-                  keyboardType: TextInputType.phone,
-                  validator: (value) {
-                    if ((value == null || value.isEmpty) && _emailController.text.isEmpty) {
-                      return "Valamelyik elérhetőség kitöltése kötelező!";
-                    }
-                    return null;
-                  },
-                ),
-              ),
-            ],
-          ),
         ],
       ),
     );
   }
 
   Widget _otherCommentField(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    var width = size.width;
+
+    const otherLabel = FormLabel(
+        "Ha van bármi olyasmi, amit nem kérdeztünk meg, de szívesen válaszolná rá, írd le ide nekünk.");
+    var otherField = TextFormField(
+      minLines: 1,
+      maxLines: 3,
+      controller: _otherController,
+    );
+
     return Container(
       padding: const EdgeInsets.all(8.0),
-      width: MediaQuery.of(context).size.width * 0.5,
-      child: Row(
+      width: width * 0.5,
+      child: Column(
         children: [
-          const Flexible(child: FormLabel("Bármi egyéb megjegyzés:")),
-          const SizedBox(
-            width: 8.0,
-          ),
-          Expanded(
-              child: TextFormField(
-            controller: _otherController,
-          )),
+          const SizedBox(height: 16.0),
+          otherLabel,
+          const SizedBox(height: 16.0),
+          otherField,
         ],
       ),
     );
   }
 
   Widget _codeField(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    var width = size.width;
+
+    var codeRow = Row(
+      children: const [
+        FormLabel("Ellenőrző kód"),
+        SizedBox(width: 8.0),
+        Tooltip(
+          message: "A meghívón található",
+          child: Icon(Icons.info_outline),
+        ),
+      ],
+    );
+
+    var codeField = TextFormField(
+      controller: _inviteCodeController,
+    );
+
     return Container(
       padding: const EdgeInsets.all(8.0),
-      width: MediaQuery.of(context).size.width * 0.5,
-      child: Row(
-        children: [
-          const Flexible(child: FormLabel("A meghívón található ellenőrző kód:")),
-          const SizedBox(
-            width: 8.0,
-          ),
-          Expanded(
-              child: TextFormField(
-            controller: _inviteCodeController,
-          )),
-        ],
-      ),
+      width: width * 0.5,
+      child: width > WeddingBreakpoints.mobileView
+          ? Row(
+              children: [
+                Flexible(
+                  child: codeRow,
+                ),
+                const SizedBox(width: 8.0),
+                Flexible(
+                  child: codeField,
+                ),
+              ],
+            )
+          : Column(
+              children: [
+                const SizedBox(height: 16.0),
+                codeRow,
+                const SizedBox(height: 16.0),
+                codeField,
+              ],
+            ),
     );
   }
 
@@ -359,10 +461,14 @@ class _RegistrationFormState extends State<RegistrationForm> {
           widget.onSubmit(data);
         }
       },
-      child: (isLoading) ? const Padding(
-        padding: EdgeInsets.all(8.0),
-        child: CircularProgressIndicator(color: Colors.white,),
-      ) : const Text("Beküldés"),
+      child: (isLoading)
+          ? const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: CircularProgressIndicator(
+                color: Colors.white,
+              ),
+            )
+          : const Text("Beküldés"),
     );
   }
 
