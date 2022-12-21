@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wedding_page/domain/model/registration_data.dart';
 import 'package:wedding_page/ui/home/widgets/registration_form/form_result.dart';
 import 'package:wedding_page/ui/home/widgets/registration_form/registration_form_bloc.dart';
+import 'package:wedding_page/ui/home/widgets/registration_form/registration_form_event.dart';
 import 'package:wedding_page/ui/home/widgets/registration_form/registration_form_state.dart';
 import 'package:wedding_page/ui/theme/breakpoints.dart';
 import 'package:wedding_page/ui/widgets/form_label.dart';
@@ -475,7 +476,12 @@ class _RegistrationFormState extends State<RegistrationForm> {
   Widget _result(RegistrationFormWidgetState state) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: FormResult(state.registrationResult),
+      child: FormResult(
+        state.registrationResult,
+        () {
+          context.read<RegistrationFormBloc>().add(RegistrationResultClosed());
+        },
+      ),
     );
   }
 }

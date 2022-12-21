@@ -9,6 +9,7 @@ class RegistrationFormBloc
   RegistrationFormBloc() : super(RegistrationFormInitialState()) {
     on<RegistrationCreatedEvent>(_handleRegistrationCreated);
     on<RegistrationLoadingEvent>(_handleRegistrationLoading);
+    on<RegistrationResultClosed>(_handleRegistrationResultClosed);
     on<RegistrationSuccessEvent>(_handleRegistrationSuccess);
     on<RegistrationErrorEvent>(_handleRegistrationError);
   }
@@ -21,6 +22,11 @@ class RegistrationFormBloc
   Future<void> _handleRegistrationLoading(RegistrationLoadingEvent event,
       Emitter<RegistrationFormState> emit) async {
     emit(RegistrationFormWidgetState.loading());
+  }
+
+  Future<void> _handleRegistrationResultClosed(RegistrationResultClosed event,
+      Emitter<RegistrationFormState> emit) async {
+    emit(RegistrationFormWidgetState.empty());
   }
 
   Future<void> _handleRegistrationSuccess(RegistrationSuccessEvent event,

@@ -3,8 +3,9 @@ import 'package:wedding_page/ui/home/widgets/registration_form/registration_resu
 
 class FormResult extends StatelessWidget {
   final RegistrationResult registrationResult;
+  final Function onClose;
 
-  const FormResult(this.registrationResult, {Key? key}) : super(key: key);
+  const FormResult(this.registrationResult, this.onClose, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,13 +14,13 @@ class FormResult extends StatelessWidget {
         return _resultBar(
           context,
           Colors.green,
-          "Sikeres visszajelzés!",
+          "Köszünjük a visszajelzést, várunk a nagy napon!",
         );
       case RegistrationResult.error:
         return _resultBar(
           context,
           Colors.redAccent,
-          "Sikertelen visszajelzés!",
+          "Valami nem sikerült :'( Ha újabb próbálkozásra se megy, keress meg minket!",
         );
       case RegistrationResult.inProgress:
         return Container();
@@ -32,16 +33,28 @@ class FormResult extends StatelessWidget {
     String label,
   ) {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.2,
+      width: MediaQuery.of(context).size.width * 0.4,
       padding: const EdgeInsets.all(8.0),
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(8)),
         color: color,
       ),
       alignment: Alignment.center,
-      child: Text(
-        label,
-        style: const TextStyle(color: Colors.white),
+      child: GestureDetector(
+        onTap: () {
+          onClose();
+        },
+        child: Row(
+          children: [
+            Expanded(
+              child: Text(
+                label,
+                style: const TextStyle(color: Colors.white),
+              ),
+            ),
+            const Icon(Icons.close),
+          ],
+        ),
       ),
     );
   }

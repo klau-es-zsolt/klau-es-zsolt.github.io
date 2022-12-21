@@ -6,6 +6,8 @@ class RegistrationCreatedEvent extends RegistrationFormEvent {}
 
 class RegistrationLoadingEvent extends RegistrationFormEvent {}
 
+class RegistrationResultClosed extends RegistrationFormEvent {}
+
 class RegistrationSuccessEvent extends RegistrationFormEvent {}
 
 class RegistrationErrorEvent extends RegistrationFormEvent {
