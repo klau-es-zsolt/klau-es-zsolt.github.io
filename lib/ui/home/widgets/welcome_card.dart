@@ -16,7 +16,7 @@ class WelcomeCard extends StatelessWidget {
           children: const [
             SectionTitle("Meghívó"),
             // invitation text
-            Text("Szeretettel meghívunk a 2022. Április 1-jén tartandó esküvőnkre!"),
+            Text("Szeretettel meghívunk a 2023. Április 1-jén tartandó esküvőnkre!"),
             WeddingDivider(),
           ],
         ),
