@@ -50,7 +50,17 @@ class PlaceCard extends StatelessWidget {
       final iw = InfoWindow(
         InfoWindowOptions()
           ..position = LatLng(48.103329156859076, 20.388624801851055)
-          ..content = 'Szalajka Fogadó'
+          ..content = DivElement()
+            ..content = """
+              <div class="info-text">
+                <p>Szalajka Fogadó</p>
+                <p>3348 Szilvásvárad, Egri út 2</p>
+              </div>
+              <div class="action-buttons">
+                <a class="action" href="https://www.google.com/maps/dir//Szilv%C3%A1sv%C3%A1rad,+Szalajka+Fogad%C3%B3+%C3%A9s+%C3%89tterem,+Egri+%C3%BAt+2,+3348/@48.1032721,20.3185094,12z/data=!4m13!4m12!1m0!1m5!1m1!1s0x47408134954f8e97:0xcddfc4b9b705560a!2m2!1d20.3885497!2d48.1031787!2m3!6e1!7e2!8j1680357600!3e0" target='_blank'>Útvonal autóval</a>
+                <a class="action" href="https://menetrend.hu" target='_blank'>Útvonal busszal</a>
+              </div>
+            """
 
       );
       iw.open(map);
