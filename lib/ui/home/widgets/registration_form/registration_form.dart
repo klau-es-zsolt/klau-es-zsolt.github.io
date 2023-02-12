@@ -225,6 +225,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                 ),
                 SizedBox(width: 8.0),
                 Tooltip(
+                  triggerMode: TooltipTriggerMode.tap,
                   message: "A szállást mi biztosítjuk mindenkinek",
                   child: Icon(Icons.info_outline),
                 ),
@@ -406,6 +407,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
         FormLabel("Ellenőrző kód"),
         SizedBox(width: 8.0),
         Tooltip(
+          triggerMode: TooltipTriggerMode.tap,
           message: "A meghívón található",
           child: Icon(Icons.info_outline),
         ),
