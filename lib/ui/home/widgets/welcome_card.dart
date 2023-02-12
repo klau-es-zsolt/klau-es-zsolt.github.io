@@ -15,6 +15,9 @@ class WelcomeCard extends StatelessWidget {
     CarouselImage(file: "IMG_20220613_112218630.jpg"),
     CarouselImage(file: "IMG_20220615_211549079.jpg"),
     CarouselImage(file: "IMG_20221218_132541487.jpg"),
+    CarouselImage(file: "IMG_20230202_181914.jpg"),
+    CarouselImage(file: "IMG_20230202_093420442.jpg"),
+    CarouselImage(file: "IMG_20230203_165359.jpg"),
   ];
 
   const WelcomeCard({Key? key}) : super(key: key);
@@ -56,6 +59,7 @@ class WelcomeCard extends StatelessWidget {
                 autoPlayCurve: Curves.fastOutSlowIn,
                 enlargeCenterPage: true,
                 enlargeFactor: 0.4,
+                initialPage: 3,
                 viewportFraction: 0.6,
               ),
             ),
