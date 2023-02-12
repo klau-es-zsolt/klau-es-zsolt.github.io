@@ -28,13 +28,15 @@ class HomeScreen extends StatelessWidget {
           create: (ctx) => GetIt.I.get<RegistrationFormBloc>()..add(RegistrationCreatedEvent()),
         ),
       ],
-      child: const HomeContent(),
+      child: HomeContent(),
     );
   }
 }
 
 class HomeContent extends StatelessWidget {
-  const HomeContent({Key? key}) : super(key: key);
+  HomeContent({Key? key}) : super(key: key);
+
+  final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +53,7 @@ class HomeContent extends StatelessWidget {
             ),
           ),
           child: SingleChildScrollView(
+            controller: _scrollController,
             child: BlocConsumer<HomeBloc, HomeState>(
               listenWhen: (previous, current) => current.isListenable(),
               buildWhen: (previous, current) => !current.isListenable(),
@@ -71,7 +74,7 @@ class HomeContent extends StatelessWidget {
                     children: [
                       const WelcomeCard(),
                       const PlaceCard(),
-                      ProgramCard(),
+                      ProgramCard(scrollController: _scrollController),
                       // MenuCard(),
                       RegistrationForm(
                         onSubmit: (data) {

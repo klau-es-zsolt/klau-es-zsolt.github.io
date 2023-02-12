@@ -14,7 +14,9 @@ class ProgramCard extends StatelessWidget {
     const ProgramPoint(name: "További meglepetések"),
   ];
 
-  ProgramCard({Key? key}) : super(key: key);
+  final ScrollController scrollController;
+
+  ProgramCard({Key? key, required this.scrollController}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +25,7 @@ class ProgramCard extends StatelessWidget {
         children: [
           const SectionTitle("Programok"),
           ListView.builder(
+            controller: scrollController,
             shrinkWrap: true,
             itemCount: _programPoints.length,
             itemBuilder: (ctx, index) {
