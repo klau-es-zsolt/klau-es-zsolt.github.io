@@ -376,7 +376,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
     var width = size.width;
 
     const otherLabel = FormLabel(
-        "Ha van bármi olyasmi, amit nem kérdeztünk meg, de szívesen válaszolná rá, írd le ide nekünk.");
+        "Ha van bármi olyasmi, amit nem kérdeztünk meg, de szívesen válaszolnál rá, írd le ide nekünk.");
     var otherField = TextFormField(
       minLines: 1,
       maxLines: 3,
