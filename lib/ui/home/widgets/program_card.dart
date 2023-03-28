@@ -8,9 +8,10 @@ import 'package:wedding_page/ui/widgets/wedding_divider.dart';
 
 class ProgramCard extends StatelessWidget {
   final _programPoints = [
-    ProgramPoint(name: "Vendégvárás", time: DateTime.parse('2023-04-01 14:30:00Z')),
+    ProgramPoint(name: "Szobaátvétel kezdete", time: DateTime.parse('2023-04-01 12:00:00Z')),
+    ProgramPoint(name: "Vendégvárás", time: DateTime.parse('2023-04-01 15:00:00Z')),
     ProgramPoint(name: "Szertartás", time: DateTime.parse('2023-04-01 16:00:00Z')),
-    ProgramPoint(name: "Ünnepi vacsora", time: DateTime.parse('2023-04-01 17:30:00Z')),
+    ProgramPoint(name: "Ünnepi vacsora", time: DateTime.parse('2023-04-01 18:30:00Z')),
     const ProgramPoint(name: "További meglepetések"),
   ];
 
